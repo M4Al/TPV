@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using PP.Attractions;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace PP.EntityFrameworkCore
 {
@@ -11,12 +13,12 @@ namespace PP.EntityFrameworkCore
 
             /* Configure your own tables/entities inside here */
 
-            //builder.Entity<YourEntity>(b =>
-            //{
-            //    b.ToTable(PPConsts.DbTablePrefix + "YourEntities", PPConsts.DbSchema);
-            //    b.ConfigureByConvention(); //auto configure for the base class props
-            //    //...
-            //});
+            builder.Entity<Attraction>(b =>
+            {
+                b.ToTable(PPConsts.DbTablePrefix + "Attractions", PPConsts.DbSchema);
+                b.ConfigureByConvention(); //auto configure for the base class props
+                b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+            });
         }
     }
 }

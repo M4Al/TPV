@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PP.Attractions;
 using PP.Users;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -54,5 +55,6 @@ namespace PP.EntityFrameworkCore
 
             builder.ConfigurePP();
         }
+        public DbSet<Attraction> Attractions { get; set; }
     }
 }
