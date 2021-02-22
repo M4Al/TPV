@@ -2,6 +2,7 @@
 {
     public enum AttractionType
     {
+        Undefined,
         Rollercoaster,
         Kermisattractie,
         Waterattractie,
