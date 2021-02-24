@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PP.Attractions;
 using PP.Users;
+using PP.RideRestrictions;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Modeling;
@@ -26,6 +27,8 @@ namespace PP.EntityFrameworkCore
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside PPDbContextModelCreatingExtensions.ConfigurePP
          */
+        public DbSet<Attraction> Attractions { get; set; }
+        public DbSet<RideRestriction> RideRestrictions { get; set; }
 
         public PPDbContext(DbContextOptions<PPDbContext> options)
             : base(options)
@@ -55,6 +58,6 @@ namespace PP.EntityFrameworkCore
 
             builder.ConfigurePP();
         }
-        public DbSet<Attraction> Attractions { get; set; }
+        
     }
 }

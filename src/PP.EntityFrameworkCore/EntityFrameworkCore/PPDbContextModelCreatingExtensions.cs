@@ -1,4 +1,5 @@
 ﻿using PP.Attractions;
+using PP.RideRestrictions;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 using Volo.Abp.EntityFrameworkCore.Modeling;
@@ -16,6 +17,14 @@ namespace PP.EntityFrameworkCore
             builder.Entity<Attraction>(b =>
             {
                 b.ToTable(PPConsts.DbTablePrefix + "Attractions", PPConsts.DbSchema);
+                b.ConfigureByConvention(); //auto configure for the base class props
+                b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+            });
+
+            builder.Entity<RideRestriction>(b =>
+            {
+                b.ToTable(PPConsts.DbTablePrefix + "RideRestrictions",
+                    PPConsts.DbSchema);
                 b.ConfigureByConvention(); //auto configure for the base class props
                 b.Property(x => x.Name).IsRequired().HasMaxLength(128);
             });
