@@ -19,6 +19,7 @@ namespace PP.EntityFrameworkCore
                 b.ToTable(PPConsts.DbTablePrefix + "Attractions", PPConsts.DbSchema);
                 b.ConfigureByConvention(); //auto configure for the base class props
                 b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+                b.HasMany(p => p.RideRestrictions).WithMany(p => p.Attractions);
             });
 
             builder.Entity<RideRestriction>(b =>
@@ -27,6 +28,7 @@ namespace PP.EntityFrameworkCore
                     PPConsts.DbSchema);
                 b.ConfigureByConvention(); //auto configure for the base class props
                 b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+                b.HasMany(p => p.Attractions).WithMany(p => p.RideRestrictions);
             });
         }
     }

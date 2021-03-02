@@ -11,8 +11,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace PP.Migrations
 {
     [DbContext(typeof(PPMigrationsDbContext))]
-    [Migration("20210218221830_Created_Attraction_Entity")]
-    partial class Created_Attraction_Entity
+    [Migration("20210302211527_InitialDUmp")]
+    partial class InitialDUmp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,6 +22,21 @@ namespace PP.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("AttractionRideRestriction", b =>
+                {
+                    b.Property<Guid>("AttractionsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RideRestrictionsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AttractionsId", "RideRestrictionsId");
+
+                    b.HasIndex("RideRestrictionsId");
+
+                    b.ToTable("AttractionRideRestriction");
+                });
 
             modelBuilder.Entity("PP.Attractions.Attraction", b =>
                 {
@@ -66,6 +81,57 @@ namespace PP.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppAttractions");
+                });
+
+            modelBuilder.Entity("PP.RideRestrictions.RideRestriction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<string>("ExtraProperties")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ValueHigh")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ValueLow")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppRideRestrictions");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
@@ -1982,6 +2048,21 @@ namespace PP.Migrations
                     b.HasKey("TenantId", "Name");
 
                     b.ToTable("AbpTenantConnectionStrings");
+                });
+
+            modelBuilder.Entity("AttractionRideRestriction", b =>
+                {
+                    b.HasOne("PP.Attractions.Attraction", null)
+                        .WithMany()
+                        .HasForeignKey("AttractionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PP.RideRestrictions.RideRestriction", null)
+                        .WithMany()
+                        .HasForeignKey("RideRestrictionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>

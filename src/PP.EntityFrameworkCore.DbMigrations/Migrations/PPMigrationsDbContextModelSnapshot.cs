@@ -21,6 +21,21 @@ namespace PP.Migrations
                 .HasAnnotation("ProductVersion", "5.0.3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("AttractionRideRestriction", b =>
+                {
+                    b.Property<Guid>("AttractionsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RideRestrictionsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AttractionsId", "RideRestrictionsId");
+
+                    b.HasIndex("RideRestrictionsId");
+
+                    b.ToTable("AttractionRideRestriction");
+                });
+
             modelBuilder.Entity("PP.Attractions.Attraction", b =>
                 {
                     b.Property<Guid>("Id")
@@ -107,11 +122,9 @@ namespace PP.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("ValueHigh")
-                        .HasMaxLength(3000)
                         .HasColumnType("int");
 
                     b.Property<int>("ValueLow")
-                        .HasMaxLength(3000)
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -2033,6 +2046,21 @@ namespace PP.Migrations
                     b.HasKey("TenantId", "Name");
 
                     b.ToTable("AbpTenantConnectionStrings");
+                });
+
+            modelBuilder.Entity("AttractionRideRestriction", b =>
+                {
+                    b.HasOne("PP.Attractions.Attraction", null)
+                        .WithMany()
+                        .HasForeignKey("AttractionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PP.RideRestrictions.RideRestriction", null)
+                        .WithMany()
+                        .HasForeignKey("RideRestrictionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>

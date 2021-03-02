@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PP.Attractions;
+using System;
+using System.Collections.Generic;
 using Volo.Abp.Domain.Entities.Auditing;
 
 namespace PP.RideRestrictions
@@ -9,5 +11,7 @@ namespace PP.RideRestrictions
         public RideRestrictionType Type { get; set; }
         public int ValueLow { get; set; }
         public int ValueHigh { get; set; }
+
+        public ICollection<Attraction> Attractions { get; set; }
     }
 }

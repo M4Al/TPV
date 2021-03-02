@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PP.Migrations
 {
-    public partial class Created_Attraction_Entity : Migration
+    public partial class InitialDUmp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -289,6 +289,27 @@ namespace PP.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AppAttractions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppRideRestrictions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    ValueLow = table.Column<int>(type: "int", nullable: false),
+                    ValueHigh = table.Column<int>(type: "int", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppRideRestrictions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -704,6 +725,30 @@ namespace PP.Migrations
                         name: "FK_AbpUserTokens_AbpUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AbpUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AttractionRideRestriction",
+                columns: table => new
+                {
+                    AttractionsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RideRestrictionsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AttractionRideRestriction", x => new { x.AttractionsId, x.RideRestrictionsId });
+                    table.ForeignKey(
+                        name: "FK_AttractionRideRestriction_AppAttractions_AttractionsId",
+                        column: x => x.AttractionsId,
+                        principalTable: "AppAttractions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AttractionRideRestriction_AppRideRestrictions_RideRestrictionsId",
+                        column: x => x.RideRestrictionsId,
+                        principalTable: "AppRideRestrictions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1201,6 +1246,11 @@ namespace PP.Migrations
                 column: "UserName");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AttractionRideRestriction_RideRestrictionsId",
+                table: "AttractionRideRestriction",
+                column: "RideRestrictionsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_IdentityServerClients_ClientId",
                 table: "IdentityServerClients",
                 column: "ClientId");
@@ -1291,7 +1341,7 @@ namespace PP.Migrations
                 name: "AbpUserTokens");
 
             migrationBuilder.DropTable(
-                name: "AppAttractions");
+                name: "AttractionRideRestriction");
 
             migrationBuilder.DropTable(
                 name: "IdentityServerApiResourceClaims");
@@ -1364,6 +1414,12 @@ namespace PP.Migrations
 
             migrationBuilder.DropTable(
                 name: "AbpUsers");
+
+            migrationBuilder.DropTable(
+                name: "AppAttractions");
+
+            migrationBuilder.DropTable(
+                name: "AppRideRestrictions");
 
             migrationBuilder.DropTable(
                 name: "IdentityServerApiResources");
