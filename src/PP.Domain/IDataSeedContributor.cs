@@ -49,7 +49,9 @@ namespace PP
                 Attraction attraction = (Attraction)queryAbleAttractions.Where(p => p.Name.Equals("El Rio"));
 
                 var queryAbleRR = await _rideRestrictionRepository.GetQueryableAsync();
-                RideRestriction restriction = (RideRestriction)queryAbleAttractions.Where(p => p.Name.Equals("1.2m Volwassen"));         
+                RideRestriction restriction = (RideRestriction)queryAbleAttractions.Where(p => p.Name.Equals("1.2m Volwassen"));
+
+                attraction.RideRestrictions.Add(restriction);
 
                 }
 
