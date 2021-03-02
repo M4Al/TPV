@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using PP.Attractions;
 using PP.RideRestrictions;
@@ -43,8 +44,14 @@ namespace PP
                 },
                 autoSave: true
                 );
-                
-            }
+
+                var queryAbleAttractions = await _attractionRepository.GetQueryableAsync();
+                Attraction attraction = (Attraction)queryAbleAttractions.Where(p => p.Name.Equals("El Rio"));
+
+                var queryAbleRR = await _rideRestrictionRepository.GetQueryableAsync();
+                RideRestriction restriction = (RideRestriction)queryAbleAttractions.Where(p => p.Name.Equals("1.2m Volwassen"));         
+
+                }
 
             if (await _rideRestrictionRepository.GetCountAsync() <= 0)
             {
