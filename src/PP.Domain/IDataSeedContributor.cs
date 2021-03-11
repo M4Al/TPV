@@ -11,6 +11,7 @@ namespace PP
 {
     public class PPDataSeedContributor : IDataSeedContributor, ITransientDependency
     {
+        private const string ELRIO = "El Rio";
         private readonly IRepository<Attraction, Guid> _attractionRepository;
         private readonly IRepository<RideRestriction, Guid> _rideRestrictionRepository;
                         
@@ -23,8 +24,6 @@ namespace PP
             _rideRestrictionRepository = ridestrictionRepository;
 
         }
-
-
 
         public async Task SeedAsync(DataSeedContext context)
         {
@@ -42,7 +41,7 @@ namespace PP
 
             var elRio = await _attractionRepository.InsertAsync(new Attraction
             {
-                Name = "El Rio",
+                Name = ELRIO,
                 Type = AttractionType.Waterattractie,
             }
 
@@ -60,7 +59,7 @@ namespace PP
                 ValueLow = 1200,
                 ValueHigh = 3000
             }
- );
+            );
 
             var begeleiding = await _rideRestrictionRepository.InsertAsync(new RideRestriction
             {
@@ -71,20 +70,12 @@ namespace PP
             }
             );
 
-            var queryAbleAttractions = await _attractionRepository.GetQueryableAsync();
-            //Attraction attraction = (Attraction)queryAbleAttractions.Where(p => p.Name.Equals("El Rio"));
+            elRio.RideRestrictions.Add(Volwassen12m);
+            elRio.RideRestrictions.Add(begeleiding);
 
-            //var queryAbleRR = await _rideRestrictionRepository.GetQueryableAsync();
-            //RideRestriction restriction = (RideRestriction)queryAbleAttractions.Where(p => p.Name.Equals("1.2m Volwassen"));
+            begeleiding.Attractions.Add(bobExpress);
 
-            //attraction.RideRestrictions.Add(restriction);
 
-             await _attractionRepository.InsertAsync(new Attraction
-             {
-                 RideRestrictions = Guid
-             }
-                 
-    );
         }
     }
 }

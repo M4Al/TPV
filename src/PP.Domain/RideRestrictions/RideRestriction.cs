@@ -13,5 +13,10 @@ namespace PP.RideRestrictions
         public int ValueHigh { get; set; }
 
         public ICollection<Attraction> Attractions { get; set; }
+
+        public RideRestriction()
+        {
+            Attractions = new List<Attraction>();
+        }
     }
 }
