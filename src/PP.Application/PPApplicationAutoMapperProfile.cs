@@ -1,4 +1,5 @@
 ﻿using PP.Attractions;
+using PP.RideRestrictions;
 using AutoMapper;
 
 namespace PP
@@ -12,6 +13,8 @@ namespace PP
              * into multiple profile classes for a better organization. */
             CreateMap<Attraction, AttractionDto>();
             CreateMap<CreateUpdateAttractionDto, Attraction>();
+            CreateMap<RideRestriction, RideRestrictionDto>();
+            CreateMap<CreateUpdateRideRestrictionDto, RideRestriction>();
         }
     }
 }
