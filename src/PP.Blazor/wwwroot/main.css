@@ -46,3 +46,6 @@
         -webkit-transform: scale(1.0);
     }
 }
+.bg-red {
+    background-color: red;
+}
