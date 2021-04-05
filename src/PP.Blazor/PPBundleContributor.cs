@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Bundling;
+﻿using System.Collections.Generic;
+using Volo.Abp.Bundling;
 
 namespace PP.Blazor
 {
@@ -10,6 +11,8 @@ namespace PP.Blazor
 
         public void AddStyles(BundleContext context)
         {
+            var excludeThemeFromBundle = bool.Parse(context.Parameters.GetValueOrDefault("ExcludeThemeFromBundle"));
+            context.Add("styles/PpTheme.css", excludeFromBundle: excludeThemeFromBundle);
             context.Add("main.css", true);
         }
     }
