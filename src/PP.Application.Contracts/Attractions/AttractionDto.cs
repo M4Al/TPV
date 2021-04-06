@@ -7,5 +7,10 @@ namespace PP.Attractions
     {
         public string Name { get; set; }
         public AttractionType Type { get; set; }
+
+        public string Image
+        {
+            get { return "/images/random.jfif"; }
+        }     
     }
 }
