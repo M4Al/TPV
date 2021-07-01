@@ -1,23 +1,27 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
+using Volo.Abp.UI.Navigation;
 
-namespace Volo.Abp.AspNetCore.Components.WebAssembly.BasicTheme.Themes.Basic
+namespace Volo.Abp.AspNetCore.Components.Web.BasicTheme.Themes.Basic
 {
-    public partial class MainLayout : IDisposable
+    public partial class SecondLevelNavMenuItem : IDisposable
     {
         [Inject] private NavigationManager NavigationManager { get; set; }
 
-        private bool IsCollapseShown { get; set; }
+        [Parameter]
+        public ApplicationMenuItem MenuItem { get; set; }
+
+        public bool IsSubMenuOpen { get; set; }
 
         protected override void OnInitialized()
         {
             NavigationManager.LocationChanged += OnLocationChanged;
         }
 
-        private void ToggleCollapse()
+        private void ToggleSubMenu()
         {
-            IsCollapseShown = !IsCollapseShown;
+            IsSubMenuOpen = !IsSubMenuOpen;
         }
 
         public void Dispose()
@@ -27,8 +31,8 @@ namespace Volo.Abp.AspNetCore.Components.WebAssembly.BasicTheme.Themes.Basic
 
         private void OnLocationChanged(object sender, LocationChangedEventArgs e)
         {
-            IsCollapseShown = false;
-            StateHasChanged();
+            IsSubMenuOpen = false;
+            InvokeAsync(StateHasChanged);
         }
     }
 }

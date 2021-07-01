@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Volo.Abp.AspNetCore.Components.WebAssembly.Theming.Toolbars;
+using Volo.Abp.AspNetCore.Components.Web.Theming.Toolbars;
 
-namespace Volo.Abp.AspNetCore.Components.WebAssembly.BasicTheme.Themes.Basic
+namespace Volo.Abp.AspNetCore.Components.Web.BasicTheme.Themes.Basic
 {
     public partial class NavToolbar
     {
@@ -18,11 +18,12 @@ namespace Volo.Abp.AspNetCore.Components.WebAssembly.BasicTheme.Themes.Basic
 
             ToolbarItemRenders.Clear();
 
+            var sequence = 0;
             foreach (var item in toolbar.Items)
             {
                 ToolbarItemRenders.Add(builder =>
                 {
-                    builder.OpenComponent(0, item.ComponentType);
+                    builder.OpenComponent(sequence++, item.ComponentType);
                     builder.CloseComponent();
                 });
             }
