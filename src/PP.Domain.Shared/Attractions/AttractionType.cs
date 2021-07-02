@@ -12,6 +12,6 @@
         Kinderattractie,
         Speeltuig,
         Betalendeattractie,
-        Resteaurant
+        Restaurant
     }
 }

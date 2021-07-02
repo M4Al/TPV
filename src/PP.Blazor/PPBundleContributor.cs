@@ -3,6 +3,9 @@ using Volo.Abp.Bundling;
 
 namespace PP.Blazor
 {
+    /* Add your global styles/scripts here.
+     * See https://docs.abp.io/en/abp/latest/UI/Blazor/Global-Scripts-Styles to learn how to use it
+     */
     public class PPBundleContributor : IBundleContributor
     {
         public void AddScripts(BundleContext context)
