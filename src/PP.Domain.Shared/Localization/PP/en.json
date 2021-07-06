@@ -3,6 +3,31 @@
   "texts": {
     "Menu:Home": "Home",
     "Welcome": "Welcome",
-    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io."
+    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io.",
+    "Menu:PP": "Pretparken",
+    "Menu:Attractions": "Attractions",
+    "Actions": "Actions",
+    "Close": "Close",
+    "Delete": "Delete",
+    "Edit": "Edit",
+    "NewAttraction": "New attraction",
+    "Name": "Name",
+    "Type": "Type",
+    "Price": "Price",
+    "RideRestrictions": "RideRestrictions",
+    "CreationTime": "Creation time",
+    "AreYouSure": "Are you sure?",
+    "AreYouSureToDelete": "Are you sure you want to delete this item?",
+    "Enum:AttractionType:0": "Undefined",
+    "Enum:AttractionType:1": "Rollercoaster",
+    "Enum:AttractionType:2": "Fairground attraction",
+    "Enum:AttractionType:3": "Water attraction",
+    "Enum:AttractionType:4": "Darkrides",
+    "Enum:AttractionType:5": "Thrillrides",
+    "Enum:AttractionType:6": "Family attraction",
+    "Enum:AttractionType:7": "Children's attraction",
+    "Enum:AttractionType:8": "Playset",
+    "Enum:AttractionType:9": "Paying attraction",
+    "Enum:AttractionType:10": "Restaurant"
   }
 }

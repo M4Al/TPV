@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
 using Volo.Abp.UI.Navigation;
 
-namespace Volo.Abp.AspNetCore.Components.WebAssembly.BasicTheme.Themes.Basic
+namespace Volo.Abp.AspNetCore.Components.Web.BasicTheme.Themes.Basic
 {
-    public partial class SecondLevelNavMenuItem : IDisposable
+    public partial class FirstLevelNavMenuItem : IDisposable
     {
         [Inject] private NavigationManager NavigationManager { get; set; }
 
@@ -32,7 +32,7 @@ namespace Volo.Abp.AspNetCore.Components.WebAssembly.BasicTheme.Themes.Basic
         private void OnLocationChanged(object sender, LocationChangedEventArgs e)
         {
             IsSubMenuOpen = false;
-            StateHasChanged();
+            InvokeAsync(StateHasChanged);
         }
     }
 }

@@ -8,24 +8,30 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazorise.Bootstrap" Version="0.9.3-preview6" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.3-preview6" />
+    <Content Remove="Components\PPMainLayout.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazorise.Bootstrap" Version="0.9.3.9" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.3.9" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.*" />
     <PackageReference Include="Toolbelt.Blazor.DevServer.WithCssLiveReloader" Version="5.0.*" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Components.Web.BasicTheme" Version="4.3.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Autofac.WebAssembly" Version="4.2.1" />
+    <PackageReference Include="Volo.Abp.Autofac.WebAssembly" Version="4.3.3" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Components.WebAssembly.BasicTheme" Version="4.3.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Identity.Blazor" Version="4.2.1" />
-    <PackageReference Include="Volo.Abp.TenantManagement.Blazor" Version="4.2.1" />
+    <PackageReference Include="Volo.Abp.Identity.Blazor.WebAssembly" Version="4.3.3" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Blazor.WebAssembly" Version="4.3.3" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Blazor.WebAssembly" Version="4.3.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\PP.HttpApi.Client\PP.HttpApi.Client.csproj" />
-    <ProjectReference Include="..\Volo.Abp.AspNetCore.Components.WebAssembly.BasicTheme\Volo.Abp.AspNetCore.Components.WebAssembly.BasicTheme.csproj" />
   </ItemGroup>
 
 </Project>

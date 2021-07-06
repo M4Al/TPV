@@ -44,6 +44,20 @@ namespace PP.Blazor.Menus
                 )
             );
 
+            context.Menu.AddItem(
+                new ApplicationMenuItem(
+                    "Pretparken",
+                    l["Menu:PP"],
+                    icon: "fa fa-angle-down"
+                ).AddItem(
+                    new ApplicationMenuItem(
+                        "PP.Attractions",
+                        l["Menu:Attractions"],
+                        url: "/attractions"
+                    )
+                )
+            );
+
             return Task.CompletedTask;
         }
 

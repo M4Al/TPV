@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using PP.Attractions;
+using AutoMapper;
 
 namespace PP.Blazor
 {
@@ -7,6 +8,7 @@ namespace PP.Blazor
         public PPBlazorAutoMapperProfile()
         {
             //Define your AutoMapper configuration here for the Blazor project.
+            CreateMap<AttractionDto, CreateUpdateAttractionDto>();
         }
     }
 }
