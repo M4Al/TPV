@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -6,18 +7,19 @@ using Volo.Abp.Domain.Repositories;
 namespace PP.Attractions
 {
     public class AttractionAppService :
-            CrudAppService<
-            Attraction, //The Attraction entity
-            AttractionDto, //Used to show attractions
-            Guid, //Primary key of the attraction entity
-            PagedAndSortedResultRequestDto, //Used for paging/sorting
-            CreateUpdateAttractionDto>, //Used to create/update a Attraction
-        IAttractionAppService //implement the IAttractionAppService
+           ApplicationService, IAttractionAppService
     {
-        public AttractionAppService(IRepository<Attraction, Guid> repository)
-            : base(repository)
-        {
+        private readonly IRepository<Attraction, Guid> _attractionRepository;
 
+        public AttractionAppService(IRepository<Attraction, Guid> attractionRepository)
+        {
+            _attractionRepository = attractionRepository;
+        }
+
+        public async Task<AttractionDto> GetOne(Guid id)
+        {
+            Attraction item =  await _attractionRepository.GetAsync(id);
+            return ObjectMapper.Map<Attraction, AttractionDto>(item);
         }
     }
 }
