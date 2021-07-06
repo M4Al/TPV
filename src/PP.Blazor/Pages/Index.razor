@@ -4,7 +4,7 @@
 @using PP.Attractions 
 @inject ICurrentTenant CurrentTenant
 @inject AuthenticationStateProvider AuthenticationStateProvider
-@inherits AbpCrudPageBase<IAttractionAppService, AttractionDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateAttractionDto>
+ 
 
         <div class="container">
             <div class="p-5 text-center">
@@ -13,43 +13,18 @@
                 </Badge>
 
                 <h1>Welcome to the Application</h1>
+                Howhow
+
 
                 <Card>
                     <CardBody>
-                        <DataGrid TItem="AttractionDto"
-                                  Data="Entities"
-                                  ReadData="OnDataGridReadAsync"
-                  TotalItems="TotalCount"
-                  ShowPager="false"
-                  PageSize="9999">
-                            <DataGridColumns>
-                                <DataGridColumn TItem="AttractionDto"
-                                                Field="AttractionDto.Name"
-                                                Caption="Naam">
-
-                                    <DisplayTemplate>
-                                        Den id is: @context.Name
-                                    </DisplayTemplate>
-                                </DataGridColumn>
-                                <DataGridColumn TItem="AttractionDto"
-                                                Field="AttractionDto.Name"
-                                                Caption="Foto">
-                                    <DisplayTemplate>
-                                        Den id is: <img src="@context.Image" />
-                                    </DisplayTemplate>
-                                </DataGridColumn>
-                            </DataGridColumns>
-                        </DataGrid>
+                        @attraction.Name @attraction.Type
                     </CardBody>
-                </Card>
+                </Card>Lala
 
-                <p class="lead px-lg-5 mx-lg-5">@L["LongWelcomeMessage"]</p>
+                
 
-                @if (!CurrentUser.IsAuthenticated)
-                {
-    <a class="btn btn-primary" href="/authentication/login">
-        <i class="fa fa-sign-in-alt"></i> @L["Login"]
-    </a>}
+               
             </div>
 
             <div class="my-3 text-center">
